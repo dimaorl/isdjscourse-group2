@@ -1,21 +1,32 @@
-function putToCache(elem, cache){
-	if(cache.indexOf(elem) != -1){
-		return;
-	}
-	var i = Math.floor(Math.random()*(cache.length + 1));
-	cache.splice(i, 0, elem);
+for (let i = 1; i <= 100; i++) {
+  if (i % 3 === 0 && i % 5 === 0) {
+    console.log('fizzbuzz');
+    document.write('fizzbuzz<br />');
+  } else if (i % 3 === 0) {
+    console.log('fizz');
+    document.write('fizz<br />');
+  } else if (i % 5 === 0) {
+    console.log('buzz');
+    document.write('buzz<br />');
+  } else {
+    console.log(i);
+    document.write(i+'<br />');
+  }
+  console.log( isPalindrom(i) );
+  document.write(isPalindrom(i)+'<br />');
 }
-function madness(){
-	var cache = [];
-	return function(a, b){
-		putToCache(a, cache);
-		putToCache(b, cache);
-		return cache.indexOf(b) - cache.indexOf(a);
-	}
+/**
+ * function a isPalindrom.
+ * @param {int} input The first number.
+ * @return {boolean} answer yes or no
+ */
+function isPalindrom(input = '') {
+  const inputstring = input + '';
+  const strLen = inputstring.length;
+  let answer = '';
+  for (let i = 0; i < strLen; i++) {
+    if (inputstring[i] === inputstring[strLen - 1 - i]) answer = 'yes';
+    else return false;
+  }
+  if (answer === 'yes') return true;
 }
-function shuffle(arr){
-	var compare = madness();
-	return arr.sort(compare);
-}
-var array = [1,2,3,4,5,6,7];
-console.log( shuffle( array ) );
